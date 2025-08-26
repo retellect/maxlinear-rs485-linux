@@ -1,3 +1,16 @@
+==============
+Clone the repo
+make clean
+make
+sudo mkdir -p /lib/modules/$(uname -r)/extra/
+sudo cp xr_usb_serial_common.ko /lib/modules/$(uname -r)/extra/
+sudo depmod -a
+echo "blacklist xr_serial" | sudo tee /etc/modprobe.d/blacklist-xr-serial.conf
+sudo update-initramfs -u
+echo "xr_usb_serial_common" | sudo tee /etc/modules-load.d/xr-usb-serial.conf
+
+==============
+
 Exar USB Serial Driver
 ======================
 Version 1C  2017/1/11
