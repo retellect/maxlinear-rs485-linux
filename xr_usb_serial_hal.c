@@ -496,8 +496,12 @@ void xr_usb_serial_set_flow_mode(struct xr_usb_serial *xr_usb_serial,
 	else
 	{
 		//rs232, default mode
-		xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_flow_addr, flow);
-		xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_mode_addr, gpio_mode);
+		//RS485 HACK
+		//xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_flow_addr, flow);
+		//xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_mode_addr, gpio_mode);
+		
+		xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_flow_addr, 0x00);
+		xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_mode_addr, 0x0B);
 	}
 
 }
